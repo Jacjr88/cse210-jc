@@ -3,7 +3,6 @@ public class Scripture
     private Reference _reference;
     private List<Word> _words;
 
-
     public Scripture(Reference reference, List<Word> text){
         _reference = reference;
         _words = text;
@@ -42,17 +41,30 @@ public class Scripture
     }
 
     public void HideRandomWords(int numberToHide){
-        //Must hide a random word in the list
+        int counter = 0;
+        while (counter < numberToHide){
+            var random = new Random();
+            int index = random.Next(_words.Count);
+            if (!_words[index].GetIsHidden()){
+                _words[index].isHidden();
+                counter++;
+            }
+        }    
     }
 
+    /**returns the result after hiding words**/
     public string GetDisplayText(){
-        //returns the result after hiding words
-        return "";
+        string result = "";
+
+        foreach(Word word in _words){
+            result = $"{result} {word.GetDisplayText()}";
+        }
+
+        return $"{_reference.GetDisplayText()}{result}";
     }
 
     public bool IsCompletelyHidden(){
-        //returns a true when all words are hidden
-        return true;
+        return _words.All(word => word.GetIsHidden());
     }
 
 }

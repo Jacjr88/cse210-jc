@@ -6,13 +6,43 @@ class Program
     {
         Console.WriteLine("Hello Develop03 World!");
 
-        Reference reference = new Reference("John", 5, 2);
+        bool allHidden = false;
 
-        Scripture scripture = new Scripture(reference, "habia una vez un barquito chiquitito");
+        string userInput = "";
 
-        Console.WriteLine($"{scripture.GetReference().GetBook()} {scripture.GetReference().GetChapter()}:{scripture.GetReference().GetVerse()}");
-        foreach(Word word in scripture.GetWords()){
-            Console.Write($"{word.GetText()} ");
+        int quantityOfWords;
+
+        RandomScripturePicker rsp = new RandomScripturePicker();
+
+        List<Scripture> scriptures = rsp.ReadScripturesFromFile();
+
+        Scripture randomScripture = rsp.GetRandomScripture(scriptures);
+
+        quantityOfWords = randomScripture.GetWords().Count;
+
+        while (allHidden == false && userInput != "quit"){
+            allHidden = randomScripture.IsCompletelyHidden();
+            Console.Clear();
+            Console.WriteLine("Press enter to hide wome words in the scripture or type 'quit' to stop program");
+
+            Console.WriteLine("Random Scrpiture");
+            
+            Console.WriteLine($"{randomScripture.GetDisplayText()}");
+            
+            userInput = Console.ReadLine();
+            if(userInput == ""){
+
+                if (quantityOfWords>=3){
+                    randomScripture.HideRandomWords(3);
+                    quantityOfWords-=3;
+                } else {
+                    randomScripture.HideRandomWords(quantityOfWords);
+                    quantityOfWords-=quantityOfWords;
+                }
+                              
+            } else if (userInput == "quit"){
+                break;
+            }
         }
     }
 }

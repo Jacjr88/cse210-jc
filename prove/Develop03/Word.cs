@@ -14,7 +14,7 @@ public class Word
         return _text;
     }
 
-    public void SetTop(string text)
+    public void SetText(string text)
     {
         _text = text;
     }
@@ -24,25 +24,32 @@ public class Word
         return _isHidden;
     }
 
-    public void SetTop(bool isHidden)
+    public void SetIsHidden(bool isHidden)
     {
         _isHidden = isHidden;
     }
 
     public void Hide(){
+        string hiddenWord = "";
+        char[] word = _text.ToCharArray();
+        foreach(char letter in word){
+          hiddenWord = $"{hiddenWord}{letter.ToString().Replace(letter.ToString(),"_")}";
+        }
+        _text = hiddenWord;
         /*Must set the isHidden = true and replace letters for underscores*/
     }
     public void Show(){
-        /*Must set the isHidden = false and replace underscores for letters*/
+        //**I did not find this method useful, so I did not implemented its functionallity**///
     }
     public bool isHidden(){
-        /*To manage the transition of states*/
-        return true;
+        return _isHidden = true;
     }
 
+    /*This method will display the text or the word*/
     public string GetDisplayText(){
-        /*This method will display the text*/
-        return "";
+        if (GetIsHidden()){
+            Hide();
+        }
+        return _text;
     }
-
 }
