@@ -14,17 +14,17 @@ class Program
             userInput = int.Parse(Console.ReadLine());
             if(userInput == 1){
                 Console.Clear();
-                BreathingActivity breathingActivity = new BreathingActivity(0);
+                BreathingActivity breathingActivity = new BreathingActivity();
                 breathingActivity.Run();
             }
             else if(userInput == 2){
                 Console.Clear();
-                ReflectingActivity reflectingActivity = new ReflectingActivity(0,new List<string>(),new List<string>());
+                ReflectingActivity reflectingActivity = new ReflectingActivity();
                 reflectingActivity.Run();
             }
             else if(userInput == 3){
                 Console.Clear();
-                ListingActivity listingActivity = new ListingActivity(20,new List<string>());
+                ListingActivity listingActivity = new ListingActivity();
                 listingActivity.Run();
             } 
         }

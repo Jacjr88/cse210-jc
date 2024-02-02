@@ -4,12 +4,13 @@ public class ListingActivity : Activity{
 
     public ListingActivity(string name, string description, int duration) : base (name,description,duration){
     }
-    public ListingActivity(int duration, List<string> prompts)  : base (duration){
+    public ListingActivity(){
         SetName("Listing Activity");
         SetDescription("This activity will help you reflect on the good things in your life by having you list as many things" +
                         "as you can in a certain area.");
-        SetPrompts(prompts);
+        SetPrompts(new List<string>());
         SetCount(0);
+        SetDuration(0);
     }
 
     public int GetCount(){

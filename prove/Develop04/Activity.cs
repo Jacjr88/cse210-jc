@@ -15,8 +15,11 @@ public class Activity{
         _duration = duration;
     }
 
-        public Activity( int duration){
+    public Activity( int duration){
         _duration = duration;
+    }
+
+    public Activity(){
     }
 
     public string GetName(){

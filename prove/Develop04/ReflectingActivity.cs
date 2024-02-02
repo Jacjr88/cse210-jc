@@ -5,12 +5,13 @@ public class ReflectingActivity : Activity{
     public ReflectingActivity(string name, string description, int duration) : base (name,description,duration){
     }
 
-    public ReflectingActivity(int duration, List<string> prompts, List<string> questions)  : base (duration){
+    public ReflectingActivity(){
         SetName("Reflecting Activity");
         SetDescription("This activity will help you reflect on times in your life when you have shown strengthand resilience. This will help you recognize" + 
                         "the power you have and how you can use it in other aspects of your life.");
-        SetPrompts(prompts);
-        SetQuestions(questions);
+        SetPrompts(new List<string>());
+        SetQuestions(new List<string>());
+        SetDuration(0);
     }
 
     public List<string> GetPrompts(){
