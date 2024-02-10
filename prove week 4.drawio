@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-02-02T14:00:39.091Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="4LhiqP5k9cbA0PHA47F0" version="23.0.2" type="device">
+<mxfile host="Electron" modified="2024-02-02T22:34:07.466Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="swr3vzErk5dw7jCBipAl" version="23.0.2" type="device">
   <diagram name="Página-1" id="En0zh5TMipR6Auo7EhX6">
-    <mxGraphModel dx="2261" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2084" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -25,7 +25,7 @@
         <mxCell id="TflRWpkOfV3KCFZFqnfJ-5" value="DisplayStartingMessage(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="TflRWpkOfV3KCFZFqnfJ-2" vertex="1">
           <mxGeometry y="138" width="249" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="TflRWpkOfV3KCFZFqnfJ-50" value="ShowAnimation(seconds : int): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="TflRWpkOfV3KCFZFqnfJ-2" vertex="1">
+        <mxCell id="TflRWpkOfV3KCFZFqnfJ-50" value="ShowSpinner(seconds : int): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="TflRWpkOfV3KCFZFqnfJ-2" vertex="1">
           <mxGeometry y="164" width="249" height="26" as="geometry" />
         </mxCell>
         <mxCell id="TflRWpkOfV3KCFZFqnfJ-19" value="ShowCountdownTimer(seconds: int):&amp;nbsp; void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="TflRWpkOfV3KCFZFqnfJ-2" vertex="1">
