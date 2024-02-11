@@ -1,0 +1,5 @@
+1350
+DiscountGoal:sdfsdf--xcvxcxcv--500--0
+SimpleGoal:asd--asdasdasdsad--100--True
+EternalGoal:zxc--zxczxczxc--50
+ChecklistGoal:qwe--qweqweqwe--550--500--3--3
