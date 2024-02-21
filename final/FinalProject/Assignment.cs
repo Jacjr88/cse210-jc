@@ -12,10 +12,13 @@ abstract class Assignment{
         _id = random.Next(0,999999999);
         _name = name;
         _studentsAssigned = course.GetEnrolledStudents();
-        AssignToAllStudentsInCourse(course);
+        //AssignToAllStudentsInCourse(GetStudentsAssigned());
         _instructor = course.GetInstructor();
         _grade = 0;
         _dueDate = dueDate;
+        SetCourse(course);
+        course.GetInstructor().AddAssignment(this);
+        course.GetEnrolledStudents();
     }
 
     public int GetId(){
@@ -59,11 +62,22 @@ abstract class Assignment{
         _dueDate = dueDate;
     }
 
-    public void AssignToAllStudentsInCourse(Course course){
-        foreach(Student student in course.GetEnrolledStudents()){
-            student.GetAssignments().Add(this);
-            //Create an assignment for each Student of the course?
+    public List<Student> AddAssignedStudents(List<Student> students){
+        
+        foreach(Student student in students){
+            student.AddAssignment(this);
         }
+        return students;
+    }
+
+    public void AssignToAllStudentsInCourse(List<Student> students){
+        List<Assignment> studentAssignments = new List<Assignment>();
+        students.ForEach(student => {
+            student.SetAssignments(studentAssignments);
+            student.GetCourses()
+            .ForEach(course => course.GetAssignments()
+            .ForEach(assignment => studentAssignments.Add(assignment)));
+        });
     }
     
     public void AddStudentsAssigned(Student student){

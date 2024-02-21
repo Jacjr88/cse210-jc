@@ -3,10 +3,12 @@ class Homework : Assignment{
     private bool _submitted;
     private DateTime _submitDate;
 
+    Utils utils = new Utils();
 
     public Homework(string name, Course course, DateTime dueDate) : base (name, course, dueDate){
        _late = false;
        _submitted = false;
+       SetStudentsAssigned(AddAssignedStudents(course.GetEnrolledStudents()));
     }
 
     public bool GetLate(){
@@ -44,6 +46,21 @@ class Homework : Assignment{
     }
 
     public Homework GetHomeworkById(int id){
+        string filename = Console.ReadLine();
+
+        string[] lines = System.IO.File.ReadAllLines(filename);
+
+        /*List<int> intIds = new List<int>();
+        string ids = "586330776,447387008";
+        string[] parts = ids.Split(",");
+            foreach(string id in parts){
+                intIds.Add(int.Parse(id));
+            }
+
+        foreach(int id in intIds){
+            Console.WriteLine(id);
+        }*/
+
         //**Read the Assignment file and get the line that matches the id of argument**/ 
         return null;
     }
@@ -64,7 +81,8 @@ class Homework : Assignment{
 
     public override string GetStringRepresentation(){
         //Add all attributes
-        return $"{GetType()}:{GetId()}--{GetName()}--{GetCourse()}--{GetGrade()}";
+        return $"{GetType()}:{GetId()}--{GetName()}--{GetCourse().GetId()}--{utils.StringifyStudentsList(GetStudentsAssigned())}--{GetInstructor().GetId()}--" +
+        $"{GetGrade()}--{GetDueDate().ToShortDateString()}";
     }
 
     public override void UpdateAssignment(int id){

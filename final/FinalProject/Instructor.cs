@@ -41,6 +41,8 @@ class Instructor : Person {
         _salary = salary;
     }
 
+    Utils utils = new Utils();
+
     /**Will update the data of a originalPerson to the updatedPerson data**/
     public override void UpdatePersonData(Person originalPerson, Person Person){
         /*
@@ -57,23 +59,42 @@ class Instructor : Person {
         return $"{GetType()} ID:{GetId()} Name:{GetName()} salary:{GetSalary()}";
     }
     public override string GetStringRepresentation(){
-        return $"{GetType()}:{GetId()}--{GetName()}--{GetSalary()}--{GetAddress()}";
+        return $"{GetType()}:{GetId()}--{GetName()}--{GetAge()}--{GetAddress()}--{GetPhone()}--{GetEmail()}--{utils.StringifyCoursesList(GetCourses())}--{utils.StringifyStudentsList(GetStudents())}--" + 
+        $"{utils.StringifyAssignmentsList(GetAssignments())}--{GetSalary()}";
     }
 
     //**The salary of the Instructor will be the 50% of the tuiton of all the Students registered in his/her course**//
     public float CalculateSalary(){
-        GetCourses();
+        float salary = 0;
+        GetStudents().ForEach(student => GetCourses().ForEach(course => salary += course.GetCost()));
+
         //**Sumarize all tuiton of all the Students registered on the courses and return the half of it**//
         //SetSalary(The compute will update the salary of the instructor)
-        return 0;
+        return salary * 0.5f;
     }
 
+    /**Will add a new Course for this instructor(add the course to Courses List)**/
     public void AddNewCourse(Course course){
-        /**Will add a new Course for this instructor(add the course to Courses List)**/
+        List<Course> courses = GetCourses();
+        courses.Add(course);
+        SetCourses(courses);
     }
 
+    public void AddAssignment(Assignment assignment){
+        List<Assignment> assignments = GetAssignments();
+        assignments.Add(assignment);
+        SetAssignments(assignments);
+    }
+
+    /**Grade the specific assignment to the student**/
     public void GradeAssignment(Student student, Assignment assignment, float grade){
-        /**Grade the specific assignment to the student**/
+        student.GetAssignments().ForEach(assignment => {
+            if (assignment.Equals(assignment)){
+                assignment.SetGrade(grade);
+                student.SetAverageGrade(student.CalculateGrade());
+                new StudentGrades(student,assignment,grade);
+            }
+        });
     }
 
 }

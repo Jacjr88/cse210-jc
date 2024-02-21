@@ -15,6 +15,7 @@ abstract class Course{
         _monthsDuration = monthsDuration;
         _cost = cost;
         _instructor = instructor;
+        instructor.AddNewCourse(this);
         _enrolledStudents = new List<Student>();
         _assignments = new List<Assignment>();
     }
@@ -82,9 +83,14 @@ abstract class Course{
     public void AddAssignment(Assignment assignment){
         GetAssignments().Add(assignment);
         SetAssignments(GetAssignments());
+        foreach(Student student in GetEnrolledStudents()){
+            student.GetAssignments().Add(assignment);
+            assignment.GetCourse().GetInstructor().AddAssignment(assignment);          
+        }
     }
 
     public abstract void SaveCourse();
 
     public abstract void LoadCourses();
+    public abstract string GetStringRepresentation();
 }

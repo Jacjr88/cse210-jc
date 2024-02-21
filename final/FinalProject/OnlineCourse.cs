@@ -6,6 +6,8 @@ class OnlineCourse : Course{
         _webPlatform = webPlatform;
     }
 
+    Utils utils = new Utils();
+
     public string GetWebPlatform(){
         return _webPlatform;
     }
@@ -17,11 +19,10 @@ class OnlineCourse : Course{
         SetWebPlatform(webPlatform);
     }
 
+    //Add all the enrolled students names and WebPlatforms
     public override List<string> DisplayEnrolledStudents(){
         List<string> students = new List<string>();
-        foreach(Student student in GetEnrolledStudents()){
-            //Add all the enrolled students names and WebPlatforms
-        }
+        GetEnrolledStudents().ForEach(student => students.Add($"{student.GetId()} {student.GetName()} {GetWebPlatform()}"));
         return students;
     }
 
@@ -31,5 +32,10 @@ class OnlineCourse : Course{
 
     public override void LoadCourses(){
         /**Load Courses from the csv**/
+    }
+
+    public override string GetStringRepresentation(){
+        return $"{GetType()}:{GetId()}--{GetName()}--{GetMonthsDuration()}--{GetCost()}--{GetInstructor().GetId()}--{utils.StringifyStudentsList(GetEnrolledStudents())}--" +
+        $"{utils.StringifyAssignmentsList(GetAssignments())}--{GetWebPlatform()}";
     }
 }

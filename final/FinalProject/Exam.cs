@@ -8,6 +8,8 @@ class Exam : Assignment{
        _attempts = 0;
        _attemptsLimit = attemptsLimit;
        _approved = false;
+       SetStudentsAssigned(AddAssignedStudents(course.GetEnrolledStudents()));
+       //course.GetInstructor().AddAssignment(this);
     }
 
     public int GetAttempts(){

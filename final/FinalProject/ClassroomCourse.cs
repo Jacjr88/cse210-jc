@@ -34,11 +34,11 @@ class ClassroomCourse : Course{
         SetTurn(turn);
     }
 
+    Utils utils = new Utils();
+
     public override List<string> DisplayEnrolledStudents(){
         List<string> students = new List<string>();
-        foreach(Student student in GetEnrolledStudents()){
-            //Add all the enrolled students names, classrooms and turn
-        }
+        GetEnrolledStudents().ForEach(student => students.Add($"{student.GetId()} {student.GetName()} {GetClassroom()} {GetTurn()}"));
         return students;
     }
 
@@ -47,5 +47,10 @@ class ClassroomCourse : Course{
     }
     public override void LoadCourses(){
         /**Load Courses from the csv**/
+    }
+
+    public override string GetStringRepresentation(){
+        return $"{GetType()}:{GetId()}--{GetName()}--{GetMonthsDuration()}--{GetCost()}--{GetInstructor().GetId()}--{utils.StringifyStudentsList(GetEnrolledStudents())}--" +
+        $"{utils.StringifyAssignmentsList(GetAssignments())}--{GetClassroom()}--{GetTurn()}";
     }
 }
