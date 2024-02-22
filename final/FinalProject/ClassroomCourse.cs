@@ -8,9 +8,9 @@ class ClassroomCourse : Course{
         _turn = turn;
     }
 
-    public ClassroomCourse(string name, int monthsDuration, float cost, Instructor instructor, string classroom): base(name, monthsDuration, cost, instructor){
+    public ClassroomCourse(int id, string name, int monthsDuration, float cost, Instructor instructor, string classroom, string turn): base(id, name, monthsDuration, cost, instructor){
         _classroom = classroom;
-        _turn = "Morning";
+        _turn = turn;
     }
 
     public string GetClassroom(){
@@ -43,7 +43,9 @@ class ClassroomCourse : Course{
     }
 
     public override void SaveCourse(){
-        /**Save to the csv file the Course data**/
+        using (StreamWriter outputFile = new StreamWriter("Courses.txt", true)){
+            outputFile.WriteLine(GetStringRepresentation());
+        }
     }
     public override void LoadCourses(){
         /**Load Courses from the csv**/

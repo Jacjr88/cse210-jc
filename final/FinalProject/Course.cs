@@ -20,6 +20,17 @@ abstract class Course{
         _assignments = new List<Assignment>();
     }
 
+        public Course(int id, string name, int monthsDuration, float cost, Instructor instructor){
+        _id = id;
+        _name = name;
+        _monthsDuration = monthsDuration;
+        _cost = cost;
+        _instructor = instructor;
+        instructor.AddNewCourse(this);
+        _enrolledStudents = new List<Student>();
+        _assignments = new List<Assignment>();
+    }
+
     public int GetId(){
         return _id;
     }
@@ -62,6 +73,10 @@ abstract class Course{
         _assignments = assignments;
     }
 
+    public string DisplayCourseData(){
+        return $"{GetType()} ID:{GetId()} Name:{GetName()} Balance:{GetCost()}";
+    }
+
     public void ChangeInstructor(Instructor instructor){
         //**Replace the actual isntructor and change it, update the "Instructors" salary too**//
     }
@@ -88,7 +103,6 @@ abstract class Course{
             assignment.GetCourse().GetInstructor().AddAssignment(assignment);          
         }
     }
-
     public abstract void SaveCourse();
 
     public abstract void LoadCourses();

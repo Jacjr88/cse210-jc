@@ -1,0 +1,31 @@
+Main Menu
+
+1 - Create new Student
+2 - Create new Instructor
+3 - Create Course / Online or Classroom
+4 - Student Menu / Get a Student from List (by id)
+5 - Instructor Menu / Get a Instructor from List (by id)
+
+Student Menu Options
+
+Show Student info DisplayPersonData()
+
+1 - Enroll Course
+2 - Withdraw from Course
+3 - Add Credit to Student
+4 - Display Enrolled Courses
+5 - Display Course Assigments
+6 - Check if Approved
+
+Instructor Menu Options
+Show Instructor info DisplayPersonData()
+
+1 - Grade Assignment / Get a Student from List (by id)
+2 - Add Absense to Student
+3 - Create new Assignment / Homework or Exam
+
+
+
+
+
+

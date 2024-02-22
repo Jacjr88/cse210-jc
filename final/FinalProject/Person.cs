@@ -16,8 +16,25 @@ abstract class Person {
         _email = email;
     }
 
+    public Person(int id, string name, int age, string address, string phone, string email){
+        _id = id;
+        _name = name;
+        _age = age;
+        _address = address;
+        _phone = phone;
+        _email = email;
+    }
+
+    public Person(){
+
+    }
+
     public int GetId(){
         return _id;
+    }
+
+    public void SetId(int id){
+        _id = id;
     }
 
     public string GetName(){
@@ -63,5 +80,11 @@ abstract class Person {
     public abstract string DisplayPersonData();
 
     public abstract string GetStringRepresentation();
+
+    public void SavePerson(){
+        using (StreamWriter outputFile = new StreamWriter("Persons.txt", true)){
+            outputFile.WriteLine(GetStringRepresentation());
+        }
+    }
 
 }

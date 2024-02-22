@@ -1,3 +1,5 @@
+using System.Diagnostics.Metrics;
+
 class Student : Person {
     private float _avegareGrade;
     private int _absences;
@@ -12,6 +14,22 @@ class Student : Person {
         _courses = new List<Course>();
         _assignments = new List<Assignment>();
         _balance = 0;
+    }
+
+    public Student(int id, string name, int age, string address, string phone, string email):base (id, name, age, address, phone, email){
+        _avegareGrade = 0;
+        _absences = 0;
+        _courses = new List<Course>();
+        _assignments = new List<Assignment>();
+        _balance = 0;
+    }
+
+        public Student(int id, string name, int age, string address, string phone, string email, float balance):base (id, name, age, address, phone, email){
+        _avegareGrade = 0;
+        _absences = 0;
+        _courses = new List<Course>();
+        _assignments = new List<Assignment>();
+        _balance = balance;
     }
 
     public float GetAverageGrade(){
@@ -117,6 +135,7 @@ class Student : Person {
     public void EnrollCourse(Course course, float balance){
         List<Course> coursesList = GetCourses();
         if (balance >= course.GetCost()){
+            string originalData = GetStringRepresentation();
             coursesList.Add(course);
             SetCourses(coursesList);
             SetBalance(GetBalance() - course.GetCost());
@@ -128,6 +147,8 @@ class Student : Person {
             List<Assignment> assignments = GetAssignments();
             GetAssignments().ForEach(assignments.Add);
             SetAssignments(assignments);
+            string newData = GetStringRepresentation();
+            UpdateStudentData(RowNumberRecoverer(originalData), newData);
 
         } else Console.WriteLine($"Credit not enougth to enroll {course.GetName()} course");
     }
@@ -147,8 +168,10 @@ class Student : Person {
 
     /**Add creedit to the Student balance**/
     public void AddCreditToBalance(float credit){
+        string originalData = GetStringRepresentation();
         SetBalance(GetBalance() + credit);
-        
+        string newData = GetStringRepresentation();
+        UpdateStudentData(RowNumberRecoverer(originalData), newData);
     }
     
     public void AddAbsence(){
@@ -169,8 +192,8 @@ class Student : Person {
         return course.GetAssignments();
     }
 
-    public void DisplayCourseAssignments(Course course){
-        course.GetAssignments().ForEach(assignment =>  Console.WriteLine(assignment.GetName()));
+    public void DisplayCourseAssignments(){
+        GetAssignments().ForEach(assignment => Console.WriteLine($"{assignment.GetCourse().GetName()}    {assignment.GetName()}"));
     }
     //**Add every assignment of each course**//
     public List<Assignment> GetAllCoursesAssignments(){
@@ -193,4 +216,50 @@ class Student : Person {
         return GetAllCoursesAssignmentsGrades().All(grade => grade > 75);
     }
 
+    public void UpdateStudentData(int lineNumberToReplaceInput, string newData){
+
+        string[] lines = File.ReadAllLines("Persons.txt");
+
+        int lineNumberToReplace = 3;
+
+        // Nuevo contenido de la línea
+        string newLineContent = newData;
+
+        // Reemplazar la línea deseada en el arreglo de cadenas
+        if (lineNumberToReplace >= 0 && lineNumberToReplace < lines.Length)
+        {
+            lines[lineNumberToReplace] = newLineContent;
+        }
+        else
+        {
+            Console.WriteLine("Número de línea fuera de rango.");
+        }
+
+        // Escribir todas las líneas actualizadas de vuelta al archivo
+        using (StreamWriter outputFile = new StreamWriter("Persons.txt"))
+        {
+            foreach (string line in lines)
+            {
+                outputFile.WriteLine(line);
+            }
+        }
+        Console.WriteLine("Línea reemplazada con éxito.");
+
+    }
+
+    public int RowNumberRecoverer(string originalData){
+
+        string[] lines = System.IO.File.ReadAllLines("Persons.txt");
+        List<Student> students = new List<Student>();
+        int counter = 0;
+        foreach (string line in lines){
+
+            if(line.Equals(originalData)){
+                break;
+            }
+            counter++;
+            
+        } return counter;
+        
+    } 
 }

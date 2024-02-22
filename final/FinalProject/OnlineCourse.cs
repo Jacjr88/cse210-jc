@@ -6,6 +6,10 @@ class OnlineCourse : Course{
         _webPlatform = webPlatform;
     }
 
+    public OnlineCourse(int id, string name, int monthsDuration, float cost, Instructor instructor, string webPlatform): base(id, name, monthsDuration, cost, instructor){
+        _webPlatform = webPlatform;
+    }
+
     Utils utils = new Utils();
 
     public string GetWebPlatform(){
@@ -27,7 +31,9 @@ class OnlineCourse : Course{
     }
 
     public override void SaveCourse(){
-        /**Save to the csv file the Course data**/
+        using (StreamWriter outputFile = new StreamWriter("Courses.txt", true)){
+            outputFile.WriteLine(GetStringRepresentation());
+        }
     }
 
     public override void LoadCourses(){
